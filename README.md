@@ -247,6 +247,10 @@ https://docs.tigera.io/threat/honeypod/honeypods
   
 ## Housekeeping
   
+Once you finish your trial, you can disconnect your cluster from Calico Cloud using the script provided on:
+  
+https://docs.calicocloud.io/operations/disconnect
+  
 Disable DPI:
   
 ```
