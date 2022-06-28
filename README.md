@@ -230,8 +230,6 @@ AKS cluster nodes run Ubuntu with a kernel that has WireGuard installed already,
 kubectl patch felixconfiguration default --type='merge' -p '{"spec": {"wireguardHostEncryptionEnabled": true}}'
 ```
 
-![wireguard-stats](./img/wireguard-stats.png)
-
 You can verify the public key is being distributed by means of a node annotation:
 
 ```
@@ -239,6 +237,8 @@ kubectl describe node $(kubectl get nodes --no-headers | head -1 | awk {'print $
 ```
 
 And check the statistics in the main Dashboard as shown below:
+
+![wireguard-stats](./img/wireguard-stats.png)
   
 ## Honeypods
   
