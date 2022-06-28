@@ -15,7 +15,14 @@ First we will create a Resource Group, and then the cluster:
 
 ```
 az group create -l <REGION> -n <RG_NAME>
+
 az aks create -l <REGION> -g <RG_NAME> -n <CLUSTER_NAME> --node-vm-size Standard_DS3_v2 --node-count 2 --network-plugin azure
+```
+
+Retrieve the kubeconfig file for the cluster and merge it in your standard config file, or alternatively save it on a file, and point to it during the duration of the session:
+
+```
+az aks get-credentials -g <RG_NAME> -n <CLUSTER_NAME>
 ```
 
 ### Connect your cluster to Calico Cloud
