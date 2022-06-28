@@ -1,18 +1,17 @@
-# Hands-on EKS Workshop
+# Hands-on AKS Workshop
 
 
 ## Preparation
 
 Once you clone the repo, all the yaml files to be applied below are in the "manifests" folder.
 
-### Create your EKS cluster
+### Create your AKS cluster
 
-Calico can be used as a CNI, or you can decide to use AWS VPC networking and have Calico only as plugin for the security policies. 
-
-We will use the second approach during the workshop. Below an example on how to create a two nodes cluster with an smaller footprint, but feel free to create your EKS cluster with the parameters you prefer. Do not forget to include the region if different than the default on your account.
+Below an example on how to create a two nodes cluster with an smaller footprint, but feel free to create your AKS cluster with the parameters you prefer. First we will create a Resource Group, and then the cluster:
 
 ```
-eksctl create cluster --name <CLUSTER_NAME> --version 1.21 --node-type m5.xlarge
+az group create -l <REGION> -n <RG_NAME>
+az aks create -l <REGION> -g <RG_NAME> -n <CLUSTER_NAME> --node-vm-size Standard_DS3_v2 --node-count 2 --network-plugin azure
 ```
 
 ### Connect your cluster to Calico Cloud
@@ -21,7 +20,7 @@ Subscribe to the free Calico Cloud trial on the link below:
 
 https://www.calicocloud.io/home
 
-Once you are able to login to Calico Cloud UI, go to the "Managed clusters" section, and click on the "Connect Cluster" button, then leave "Amazon EKS" selected, and give a name to your cluster, and click "Next". Read the cluster requirements in teh next section, and click "Next". Finally, copy the kubectl command you must run in order to connect your cluster to the management cluster for your Calico Cloud instance.
+Once you are able to login to Calico Cloud UI, go to the "Managed clusters" section, and click on the "Connect Cluster" button, then select "Azure AKS", and give a name to your cluster, and click "Next". Read the cluster requirements in the next section, and click "Next". Finally, copy the kubectl command you must run in order to connect your cluster to the management cluster for your Calico Cloud instance.
 
 ![managed-clusters](./img/managed-clusters.png)
 
