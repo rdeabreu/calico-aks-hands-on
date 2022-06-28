@@ -7,7 +7,11 @@ Once you clone the repo, all the yaml files to be applied below are in the "mani
 
 ### Create your AKS cluster
 
-Below an example on how to create a two nodes cluster with an smaller footprint, but feel free to create your AKS cluster with the parameters you prefer. First we will create a Resource Group, and then the cluster:
+Below there is an example on how to create a two nodes cluster with an smaller footprint, but feel free to create your AKS cluster with the parameters you prefer, however an important and required step is to specify Azure CNI to be used by means of the flag *--network-plugin azure*, instead of the default (kubenet), as that is a requirement to connect your AKS cluster to Calico Cloud. For details of the system requirements please check our documentation at:
+
+https://docs.calicocloud.io/get-started/connect/aks
+
+First we will create a Resource Group, and then the cluster:
 
 ```
 az group create -l <REGION> -n <RG_NAME>
