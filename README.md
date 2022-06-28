@@ -66,7 +66,7 @@ If using the test application above, expose the frontend service in your EKS clu
 kubectl expose svc customer -n yaobank --type LoadBalancer --name yaobank --port 80
 ```
 
-If you check your services in the yaobank namespace, you should have an external FQDN associated with the service you created above pointing to an AWS LB. Check you can resolve that FQDN, and then verify you can reach the yaobank application in your browser.
+If you check your services in the yaobank namespace, you should have an external IP associated with the service you created above. Verify you can reach the yaobank application in your browser.
 
 ```
 kubectl get svc -n yaobank
