@@ -297,7 +297,7 @@ If you used policy recommendation to create a policy to access the yaobank appli
 Remove the cluster if not needed:
   
 ```
-az group delete --name myResourceGroup --yes
+az group delete --name <RG_NAME> --yes
 ```
 
 
