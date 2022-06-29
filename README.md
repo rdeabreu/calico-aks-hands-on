@@ -60,7 +60,7 @@ Make sure all pods are running:
 kubectl get pod -n yaobank -l pci=true
 ```
 
-If using the test application above, expose the frontend service in your EKS cluster:
+If using the test application above, expose the frontend service in your AKS cluster:
 
 ```
 kubectl expose svc customer -n yaobank --type LoadBalancer --name yaobank --port 80
