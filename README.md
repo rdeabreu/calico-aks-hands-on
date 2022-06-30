@@ -180,7 +180,7 @@ kubectl get pod -n tigera-dpi -w
 Once they are running test the DPI feature entering the nginx2 pod, and executing the curl call below:
   
 ```
-kubectl exec -it nginx1 -- sh
+kubectl exec -it nginx1 -- bash
 ```
 
 ```
@@ -297,7 +297,7 @@ If you used policy recommendation to create a policy to access the yaobank appli
 Remove the cluster if not needed:
 
 ```
-az aks delete -n <CLUSTER_NAME> -g <RG_NAME>
+az aks delete -n <CLUSTER_NAME> -g <RG_NAME> --yes
 ```
 
 Or the resource group if not needed anymore:
