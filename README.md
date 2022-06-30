@@ -190,37 +190,6 @@ curl http://nginx-svc/secid_canceltoken.cgi -H 'X-CMD: Test' -H 'X-KEY: Test' -X
 Verify you are getting an alert:
   
 ![dpi-alert](./img/dpi-alert.png)
-  
-## Compliance reports
-  
-Let's implement a couple of reports:
-
-```
-kubectl create -f manifests/compliance/
-```
-  
-As reports are scheduled using a cronjob format, and we will not like to wait until the next occurrence of them, let's check the timestamp they have been created at, as we will use that value to run a report on demand:
-  
-```
-kubectl get globalreports
-```
-
-You will see something like the output below:
-  
-```
-$ kubectl get globalreports
-NAME                         CREATED AT
-daily-production-inventory   2022-04-28T06:48:06Z
-```
-
-  
-> You will need to edit the report to adjust to the correct date, so you do not have to wait for the next daily schedule
-  
-  
-  
-Go to the Compliance menu, and download the report clicking in the arrow pointing down to examine its content.
-
-![compliance-report](./img/compliance-report.png)
 
 ## Wireguard
 
