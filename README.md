@@ -154,6 +154,23 @@ Now let's scan a couple of images we intent to deploy. For this you will need tw
 
 ![Scan Settings screen](./img/scan-settings.png)
 
+Put those parameters into variables, so we can use them later:
+
+```
+export CC_URL=<URL retrieved>
+```
+```
+export CC_TOKEN=<TOKEN>
+```
+
+Then you can scan the three images for the application we want to rollout:
+
+```
+./tigera-scanner scan calico/yaobank-database:certification --apiurl $CC_URL --token $CC_TOKEN
+./tigera-scanner scan calico/yaobank-summary:certification --apiurl $CC_URL --token $CC_TOKEN
+./tigera-scanner scan calico/yaobank-customer:certification --apiurl $CC_URL --token $CC_TOKEN
+```
+
 ## About Global ThreatFeeds
 
 https://docs.calicocloud.io/threat/global-threatfeed/
