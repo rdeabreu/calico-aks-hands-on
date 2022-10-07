@@ -144,6 +144,16 @@ Image Assurance is based on the Common Vulnerabilities and Exposures (CVE) syste
 
 Let's start downloading the CLI scanner, for that, please go to the Welcome page of Calico Cloud (denoted with the Home icon ![Home Welcome Icon](./img/home-icon.png)).
 
+Then make the file executable:
+
+```
+chmod +x ./tigera-scanner
+```
+
+Now let's scan a couple of images we intent to deploy. For this you will need two items, one being the unique FQDN of the management cluster displayed in the address/navigation bar of your browser, and the other a token to upload the scan results to it. You can obtain both going to the menu "Image Assurance > Scan Results", and then clicking on the far right of the screen on "Settings":
+
+![Scan Settings screen](./img/scan-settings.png)
+
 ## About Global ThreatFeeds
 
 https://docs.calicocloud.io/threat/global-threatfeed/
