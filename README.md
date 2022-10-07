@@ -163,12 +163,35 @@ export CC_URL=<URL retrieved>
 export CC_TOKEN=<TOKEN>
 ```
 
-Then you can scan the three images for the application we want to rollout (please remember you must have the docker daemon running on the system where you run this commands):
+Then you can scan your own images for this part of the exercise, however we will be demonstrating how to accomplish this with three images for the application we just rolled out (you must have the docker daemon running on the system where you run the following commands):
+
+```
+docker pull calico/yaobank-database:certification
+```
+```
+docker pull calico/yaobank-summary:certification
+```
+```
+docker pull calico/yaobank-customer:certification
+```
 
 ```
 ./tigera-scanner scan calico/yaobank-database:certification --apiurl $CC_URL --token $CC_TOKEN
+```
+```
 ./tigera-scanner scan calico/yaobank-summary:certification --apiurl $CC_URL --token $CC_TOKEN
+```
+```
 ./tigera-scanner scan calico/yaobank-customer:certification --apiurl $CC_URL --token $CC_TOKEN
+```
+
+At this point we will install Calico Cloud admission controller to prevent those images to be deployed. For this let's create a directory where we will create a TLS certificate and key pair. These will be used for securing TLS communication between the Kubernetes API server and the Admission controller:
+
+```
+mkdir admission-controller-install && cd admission-controller-install
+```
+```
+export URL="https://installer.calicocloud.io/manifests/v3.14.1-9/manifests" && curl ${URL}/generate-open-ssl-key-cert-pair.sh | bash
 ```
 
 ## About Global ThreatFeeds
