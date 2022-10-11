@@ -167,7 +167,11 @@ daily-production-inventory   2022-04-28T06:48:06Z
 
 > You will need to edit the report to adjust to the correct date, so you do not have to wait for the next daily schedule
 
+You can patch the report with the right values executing for example:
 
+```
+kubectl patch globalreport daily-production-inventory -p '{"spec": {"schedule": "%M %H * * *"}}'
+```
 
 Go to the Compliance menu, and download the report clicking in the arrow pointing down to examine its content.
 
