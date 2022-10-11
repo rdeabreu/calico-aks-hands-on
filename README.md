@@ -187,7 +187,7 @@ docker pull calico/yaobank-customer:certification
 
 At this point we will install Calico Cloud admission controller to prevent those images to be deployed. For this let's create a directory where we will create a TLS certificate and key pair. These will be used for securing TLS communication between the Kubernetes API server and the Admission controller:
 
-<span style="color:blue"> > You must have a reasonably recent version of OpenSSL, or LibreSSL to successfully generate the keys, as older releases do not support the '-addext' argument which is required to include a 'subjectAltName' in the certificates. </span>
+<span style="color:blue"> \> You must have a reasonably recent version of OpenSSL, or LibreSSL to successfully generate the keys, as older releases do not support the '-addext' argument which is required to include a 'subjectAltName' in the certificates. </span>
 
 ```
 mkdir admission-controller-install && cd admission-controller-install
