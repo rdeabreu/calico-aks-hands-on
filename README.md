@@ -206,6 +206,12 @@ Finally, you will run some commands to prepare the manifest files. Please note t
 curl ${URL}/install-ia-admission-controller.sh | bash
 ```
 
+Apply the generated manifest:
+
+```
+kubectl apply -f ./tigera-image-assurance-admission-controller-deploy.yaml
+```
+
 ## About Global ThreatFeeds
 
 https://docs.calicocloud.io/threat/global-threatfeed/
