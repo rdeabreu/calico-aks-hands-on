@@ -200,7 +200,9 @@ Now we will download and configure the Admission Controller manifests, and confi
 export IN_NAMESPACE_SELECTOR_KEY="tenant" && IN_NAMESPACE_SELECTOR_VALUES="tenant1"
 ```
 
-Finally, you will run some commands to prepare the manifest files. Please note this will only work on linux operating systems, if you run a different distribution you may need to adjust them yourself:
+Finally, you will run some commands to prepare the manifest files. 
+
+> Please note this will only work on linux operating systems, if you run a different distribution you may need to adjust them yourself:
   
 ```
 curl ${URL}/install-ia-admission-controller.sh | bash
@@ -232,7 +234,7 @@ Try to create the application again:
 kubectl apply -f manifests/deployments/yaobank.yaml
 ```
 
-As you should have seen, the application deployment has been prevented by the admission controller, as they do not satisfy the criteria applied as they contain some CVEs which need to be addressed.
+As you should have seen, the application deployment has been prevented by the admission controller, as they do not satisfy the criteria applied because they contain some CVEs which need to be addressed.
   
 ## About Global ThreatFeeds
 
