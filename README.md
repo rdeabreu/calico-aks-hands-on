@@ -212,6 +212,18 @@ Apply the generated manifest:
 kubectl apply -f ./tigera-image-assurance-admission-controller-deploy.yaml
 ```
 
+Now let's return to our working directory, and delete de yaobank namespace:
+  
+```
+cd ../calico-on-eks-hands-on && kubectl delete -f manifests/deployments/yaobank.yaml
+```
+  
+Try to create the application again:
+  
+```
+kubectl apply -f manifests/deployments/yaobank.yaml
+```
+  
 ## About Global ThreatFeeds
 
 https://docs.calicocloud.io/threat/global-threatfeed/
