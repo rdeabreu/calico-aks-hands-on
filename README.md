@@ -163,7 +163,9 @@ export CC_URL=<URL retrieved>
 export CC_TOKEN=<TOKEN>
 ```
 
-Then you can scan your own images for this part of the exercise, however we will be demonstrating how to accomplish this with three images for the application we just rolled out (you must have the docker daemon running on the system where you run the following commands):
+Then you can scan your own images for this part of the exercise, however we will be demonstrating how to accomplish this with three images for the application we just rolled out:
+  
+> You must have the docker daemon running on the system where you run the following commands
 
 ```
 docker pull calico/yaobank-database:certification
@@ -187,7 +189,7 @@ docker pull calico/yaobank-customer:certification
 
 At this point we will install Calico Cloud admission controller to prevent those images to be deployed. For this let's create a directory where we will create a TLS certificate and key pair. These will be used for securing TLS communication between the Kubernetes API server and the Admission controller:
 
-<span style="color:blue"> \> You must have a reasonably recent version of OpenSSL, or LibreSSL to successfully generate the keys, as older releases do not support the '-addext' argument which is required to include a 'subjectAltName' in the certificates. </span>
+> You must have a reasonably recent version of OpenSSL, or LibreSSL to successfully generate the keys, as older releases do not support the '-addext' argument which is required to include a 'subjectAltName' in the certificates.
 
 ```
 mkdir admission-controller-install && cd admission-controller-install
@@ -204,7 +206,7 @@ export IN_NAMESPACE_SELECTOR_KEY="tenant" && IN_NAMESPACE_SELECTOR_VALUES="tenan
 
 Finally, you will run some commands to prepare the manifest files. 
 
-> Please note this will only work on linux operating systems, if you run a different distribution you may need to adjust them yourself:
+> Please note this will only work on linux operating systems, if you run a different distribution you may need to adjust them yourself. There is a README file in the manifests/admission-controller folder with some hints on how to achieve this.
   
 ```
 curl ${URL}/install-ia-admission-controller.sh | bash
