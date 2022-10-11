@@ -200,7 +200,7 @@ Now we will download and configure the Admission Controller manifests, and confi
 export IN_NAMESPACE_SELECTOR_KEY="tenant" && IN_NAMESPACE_SELECTOR_VALUES="tenant1"
 ```
 
-Finally, you will run some commands to prepare the manifest files. Please note this will only work on linux operating systems, if you run a different distribution you may need to adjust them yourself:
+Finally, you will run some commands to prepare the manifest files. Please note this will only work on linux operating systems, \if you run a different distribution you may need to adjust them yourself\:
   
 ```
 curl ${URL}/install-ia-admission-controller.sh | bash
