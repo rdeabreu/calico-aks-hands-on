@@ -297,7 +297,7 @@ Verify you are getting an alert:
   
 ![dpi-alert](./img/dpi-alert.png)
 
-## Wireguard
+## Encryption
 
 AKS cluster nodes run Ubuntu with a kernel that has WireGuard installed already, so in order to enable Wireguard we only need to patch the main felix configuration resource as indicated below:
 
