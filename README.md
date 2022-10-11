@@ -194,6 +194,14 @@ mkdir admission-controller-install && cd admission-controller-install
 export URL="https://installer.calicocloud.io/manifests/v3.14.1-9/manifests" && curl ${URL}/generate-open-ssl-key-cert-pair.sh | bash
 ```
 
+Now we will download and configure the Admission Controller manifests, and configure the Kubernetes API server to send admission requests to our Admission Controller only for resources from relevant namespaces (in our example the yaobank namesapace label tenant=tenant1):
+
+```
+export IN_NAMESPACE_SELECTOR_KEY="tenant" && IN_NAMESPACE_SELECTOR_VALUES="tenant1"
+```
+
+
+
 ## About Global ThreatFeeds
 
 https://docs.calicocloud.io/threat/global-threatfeed/
