@@ -367,6 +367,14 @@ Remove the yaobank application:
 kubectl delete ns yaobank
 ```
 
+Delete the images you scanned:
+
+```
+docker image rm calico/yaobank-customer:certification
+docker image rm calico/yaobank-summary:certification
+docker image rm calico/yaobank-database:certification
+```
+
 If you used policy recommendation to create a policy to access the yaobank application, remove it from the Policy Board.
 
 Remove the cluster if not needed:
