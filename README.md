@@ -138,6 +138,41 @@ The policy will be created at the end of your policy chain (at the bottom of the
 
 Now you should be able to access the yaobank application in your browser.
 
+## About Global ThreatFeeds
+
+https://docs.calicocloud.io/threat/global-threatfeed/
+
+## Compliance reports
+
+Let's implement a couple of reports:
+
+```
+kubectl create -f manifests/compliance/
+```
+
+As reports are scheduled using a cronjob format, and we will not like to wait until the next occurrence of them, let's check the timestamp they have been created at, as we will use that value to run a report on demand:
+
+```
+kubectl get globalreports
+```
+
+You will see something like the output below:
+
+```
+$ kubectl get globalreports
+NAME                         CREATED AT
+daily-production-inventory   2022-04-28T06:48:06Z
+```
+
+
+> You will need to edit the report to adjust to the correct date, so you do not have to wait for the next daily schedule
+
+
+
+Go to the Compliance menu, and download the report clicking in the arrow pointing down to examine its content.
+
+![compliance-report](./img/compliance-report.png)
+
 ## Image Assurance
 
 Image Assurance is based on the Common Vulnerabilities and Exposures (CVE) system, which provides a catalog of publicly-known security vulnerabilities and exposures. Image Assurance provides a command-line interface (CLI) to scan images, with the option to send results to the Manager UI. Additionally, Calico Cloud uses Kubernetes Validating Webhook Configuration to register an Admission Controller as a callback to accept or reject resources that create pods (such as deployments and daemonsets).
@@ -239,10 +274,7 @@ kubectl apply -f manifests/deployments/yaobank.yaml
 ```
 
 As you should have seen, the application deployment has been prevented by the admission controller, as they do not satisfy the criteria applied because they contain some CVEs which need to be addressed.
-  
-## About Global ThreatFeeds
 
-https://docs.calicocloud.io/threat/global-threatfeed/
   
 ## Deep Packet Inspection
   
