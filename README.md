@@ -217,12 +217,22 @@ Now let's return to our working directory, and delete de yaobank namespace:
 ```
 cd ../calico-on-eks-hands-on && kubectl delete -f manifests/deployments/yaobank.yaml
 ```
+
+Then apply an admission controller policy:
+
+```
+kubectl apply -f manifests/admission-controller/container-admission-policy.yaml
+```
+
+This policy will prevent the deployment of any image which scan result is 'Fail'.
   
 Try to create the application again:
   
 ```
 kubectl apply -f manifests/deployments/yaobank.yaml
 ```
+
+As you should have seen, the application deployment has been prevented by the admission controller, as they do not satisfy the criteria applied as they contain some CVEs which need to be addressed.
   
 ## About Global ThreatFeeds
 

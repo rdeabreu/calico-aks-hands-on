@@ -1,0 +1,21 @@
+   apiVersion: containersecurity.tigera.io/v1beta1
+   kind: ContainerAdmissionPolicy
+   metadata:
+     name: reject-failed-and-non-gcr
+   spec:
+     selector: all()
+     namespaceSelector: all()
+     order: 10
+     rules:
+     - action: "Reject"
+       imagePath:
+         operator: IsNoneOf
+         values:
+         - "^gcr.io/company/production-repository/.*"
+     - action: Allow
+       imageScanStatus:
+         operator: IsOneOf
+         values:
+         - Pass
+         - Warn
+     - action: Reject
