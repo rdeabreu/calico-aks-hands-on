@@ -383,6 +383,7 @@ kubectl delete svc nginx-svc
 Remove the admission controller:
   
 ```
+kubectl delete -f manifests/admission-controller/container-admission-policy.yaml
 kubectl delete -f ./tigera-image-assurance-admission-controller-deploy.yaml
 ```
 
@@ -390,14 +391,8 @@ Remove the previous deployed Security policies:
   
 ```
 kubectl delete -f manifests/netpol/ws/
-```
-```
 kubectl delete -f manifests/netpol
-```
-```
 kubectl delete -f manifests/netpol/additional/yaobank 
-```
-```
 kubectl delete -f manifests/netpol/additional/dpi/dpi-test-policy.yaml
 ```
   
@@ -410,7 +405,7 @@ kubectl delete -f manifests/tiers/tiers.yaml
 Remove the yaobank application:
   
 ```
-kubectl delete ns yaobank
+kubectl delete ns yaobank  --grace-period=0
 ```
 
 Delete the images you scanned:
