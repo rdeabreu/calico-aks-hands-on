@@ -381,9 +381,7 @@ kubectl delete -f manifests/compliance/
 Remove the previous deployed Security policies:
   
 ```
-kubectl delete -f manifests/netpol/ws/
 kubectl delete -f manifests/netpol
-kubectl delete -f manifests/netpol/additional/yaobank 
 kubectl delete -f manifests/netpol/additional/dpi/dpi-test-policy.yaml
 ```
   
