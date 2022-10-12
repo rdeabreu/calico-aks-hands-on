@@ -379,6 +379,12 @@ kubectl delete pod nginx1
 kubectl delete pod nginx2
 kubectl delete svc nginx-svc
 ```
+  
+Remove the admission controller:
+  
+```
+kubectl delete -f ./tigera-image-assurance-admission-controller-deploy.yaml
+```
 
 Remove the previous deployed Security policies:
   
