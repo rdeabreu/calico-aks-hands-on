@@ -379,6 +379,12 @@ Remove the admission controller:
 kubectl delete -f manifests/admission-controller/container-admission-policy.yaml
 kubectl delete -f ./tigera-image-assurance-admission-controller-deploy.yaml
 ```
+  
+Delete the compliance reports:
+  
+```
+kubectl delete -f manifests/compliance/
+```
 
 Remove the previous deployed Security policies:
   
