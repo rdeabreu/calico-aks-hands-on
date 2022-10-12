@@ -208,23 +208,11 @@ Then you can scan your own images for this part of the exercise, however we will
 > You must have the docker daemon running on the system where you run the following commands
 
 ```
-docker pull calico/yaobank-database:certification
-```
-```
-docker pull calico/yaobank-summary:certification
-```
-```
-docker pull calico/yaobank-customer:certification
+docker pull  tigeralabs.azurecr.io/boutiqueshop-demo/checkoutservice:v0.3.2
 ```
 
 ```
-./tigera-scanner scan calico/yaobank-database:certification --apiurl $CC_URL --token $CC_TOKEN
-```
-```
-./tigera-scanner scan calico/yaobank-summary:certification --apiurl $CC_URL --token $CC_TOKEN
-```
-```
-./tigera-scanner scan calico/yaobank-customer:certification --apiurl $CC_URL --token $CC_TOKEN
+./tigera-scanner scan tigeralabs.azurecr.io/boutiqueshop-demo/checkoutservice:v0.3.2 --apiurl $CC_URL --token $CC_TOKEN
 ```
 
 At this point we will install Calico Cloud admission controller to prevent those images to be deployed. For this let's create a directory where we will create a TLS certificate and key pair. These will be used for securing TLS communication between the Kubernetes API server and the Admission controller:
@@ -237,8 +225,8 @@ Additionally we will download and configure the Admission Controller manifests, 
 mkdir admission-controller-install && cd admission-controller-install
 export URL="https://installer.calicocloud.io/manifests/v3.14.1-1/manifests" && curl ${URL}/generate-open-ssl-key-cert-pair.sh | bash
 export URL="https://installer.calicocloud.io/manifests/v3.14.1-1/manifests" && \
-export IN_NAMESPACE_SELECTOR_KEY="tenant" && \
-export IN_NAMESPACE_SELECTOR_VALUES="tenant1" && \
+export IN_NAMESPACE_SELECTOR_KEY="image-assurance" && \
+export IN_NAMESPACE_SELECTOR_VALUES="enabled" && \
 curl ${URL}/install-ia-admission-controller.sh | bash
 ```
 
@@ -266,12 +254,18 @@ Then apply an admission controller policy:
 kubectl apply -f manifests/admission-controller/container-admission-policy.yaml
 ```
 
-This policy will prevent the deployment of any image which scan result is 'Fail'.
+This policy will prevent the deployment of any image which scan result is 'Fail' in the namespaces the admission controller is monitoring. Let's label the namespaces as we have defined:
+
+```
+kubectl label namespace default image-assurance=enabled
+kubectl label namespace yaobank image-assurance=enabled
+```
   
 Try to create the application again:
   
 ```
 kubectl apply -f manifests/deployments/yaobank.yaml
+kubectl apply -f manifest/admission-controller/hipstershop_v0.3.2.yaml
 ```
 
 As you should have seen, the application deployment has been prevented by the admission controller, as they do not satisfy the criteria applied because they contain some CVEs which need to be addressed.
