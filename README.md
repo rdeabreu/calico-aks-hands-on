@@ -51,7 +51,7 @@ kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":
 We included an small test application, but you can use your own:
 
 ```
-kubectl create -f manifests/deployments/yaons.yaml
+kubectl create -f manifests/deployments/yao-ns.yaml
 kubectl create -f manifests/deployments/yaobank.yaml
 ```
 
