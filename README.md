@@ -230,27 +230,19 @@ At this point we will install Calico Cloud admission controller to prevent those
 
 > You must have a reasonably recent version of OpenSSL, or LibreSSL to successfully generate the keys, as older releases do not support the '-addext' argument which is required to include a 'subjectAltName' in the certificates.
 
+Additionally we will download and configure the Admission Controller manifests, and configure the Kubernetes API server to send admission requests to our Admission Controller only for resources from relevant namespaces (in our example the yaobank namesapace label tenant=tenant1):
+
 ```
 mkdir admission-controller-install && cd admission-controller-install
-```
-```
 export URL="https://installer.calicocloud.io/manifests/v3.14.1-1/manifests" && curl ${URL}/generate-open-ssl-key-cert-pair.sh | bash
-```
-
-Now we will download and configure the Admission Controller manifests, and configure the Kubernetes API server to send admission requests to our Admission Controller only for resources from relevant namespaces (in our example the yaobank namesapace label tenant=tenant1):
-
-```
-export IN_NAMESPACE_SELECTOR_KEY="tenant" && IN_NAMESPACE_SELECTOR_VALUES="tenant1"
-```
-
-Finally, you will run some commands to prepare the manifest files. 
-
-> Please note this will only work on linux operating systems, if you run a different distribution you may need to adjust them yourself. There is a README file in the manifests/admission-controller folder with some hints on how to achieve this.
-  
-```
+export URL="https://installer.calicocloud.io/manifests/v3.14.1-1/manifests" && \
+export IN_NAMESPACE_SELECTOR_KEY="apply-container-policies" && \
+export IN_NAMESPACE_SELECTOR_VALUES="true" && \
 curl ${URL}/install-ia-admission-controller.sh | bash
 ```
 
+> Please note this will only work on linux operating systems, if you run a different distribution you may need to adjust them yourself. There is a README file in the manifests/admission-controller folder with some hints on how to achieve this.
+  
 Apply the generated manifest:
 
 ```
