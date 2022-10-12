@@ -236,8 +236,8 @@ Additionally we will download and configure the Admission Controller manifests, 
 mkdir admission-controller-install && cd admission-controller-install
 export URL="https://installer.calicocloud.io/manifests/v3.14.1-1/manifests" && curl ${URL}/generate-open-ssl-key-cert-pair.sh | bash
 export URL="https://installer.calicocloud.io/manifests/v3.14.1-1/manifests" && \
-export IN_NAMESPACE_SELECTOR_KEY="apply-container-policies" && \
-export IN_NAMESPACE_SELECTOR_VALUES="true" && \
+export IN_NAMESPACE_SELECTOR_KEY="tenant" && \
+export IN_NAMESPACE_SELECTOR_VALUES="tenant1" && \
 curl ${URL}/install-ia-admission-controller.sh | bash
 ```
 
