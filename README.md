@@ -257,7 +257,6 @@ kubectl apply -f manifests/admission-controller/container-admission-policy.yaml
 This policy will prevent the deployment of any image which scan result is 'Fail' in the namespaces the admission controller is monitoring. Let's label the namespaces as we have defined:
 
 ```
-kubectl label namespace default image-assurance=enabled
 kubectl label namespace yaobank image-assurance=enabled
 ```
   
@@ -265,7 +264,6 @@ Try to create the application again:
   
 ```
 kubectl apply -f manifests/deployments/yaobank.yaml
-kubectl apply -f manifest/admission-controller/hipstershop_v0.3.2.yaml
 ```
 
 As you should have seen, the application deployment has been prevented by the admission controller, as they do not satisfy the criteria applied because they contain some CVEs which need to be addressed.
